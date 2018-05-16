@@ -43,7 +43,7 @@ int main() {
 
             WriteFile(Rate);        //Writing to File
 
-            printf("%f\n",Rate);
+            printf("%f\n",Rate);        //Printing
         }
     }
 }
