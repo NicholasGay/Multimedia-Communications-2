@@ -5,7 +5,7 @@
 #include "Test.c"
 #include "File.c"
 
-#define packetsize 40
+#define packetsize 800
 
 int main() {
 
@@ -21,7 +21,7 @@ int main() {
     double t;       //Dispersion Time
     double Rate;       //Bottleneck Rate
 
-    unsigned int Interations = 10;       //Number of Interations
+    unsigned int Interations = 200;       //Number of Interations
     
     sock = connectsock("129.187.223.200", "2000", "udp");       //Creating Socket
 
