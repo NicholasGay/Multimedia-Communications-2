@@ -1,6 +1,7 @@
-int MeasurementCount(float *data, unsigned int sum){
+int MeasurementCount(float *data, unsigned int sum, float start, float width){
+    float end = start + width;
     for(int i = 0; i < 200; i++){
-        if(data[i]>0.2&&data[i]<0.5){
+        if(data[i]>start&&data[i]<end){
             sum ++;
         }
     }
