@@ -1,19 +1,18 @@
 #define packetsize 800
+#define Interations 200
 
-float Measurement() {
+float * Measurement() {
     int i;
-
-    char Msg1[packetsize] = "49 49 Undefeated";
-    char Msg2[packetsize] = "Playing Football The Arsenal Way";
-    char Mail1[packetsize];
-    char Mail2[packetsize];
-
     int sock;       //Handler for socket
     struct timeval start, end;      //For Gettime
     double t;       //Dispersion Time
     double Rate;       //Bottleneck Rate
 
-    unsigned int Interations = 200;       //Number of Interations
+    static float data[Interations];
+    char Msg1[packetsize] = "49 49 Undefeated";
+    char Msg2[packetsize] = "Playing Football The Arsenal Way";
+    char Mail1[packetsize];
+    char Mail2[packetsize];
     
     sock = connectsock("129.187.223.200", "2000", "udp");       //Creating Socket
 
@@ -31,10 +30,10 @@ float Measurement() {
             
             t = end.tv_usec - start.tv_usec;      //Calculating Dispersion Time
             Rate = packetsize/t;                    //Calculating Rate
-            Data[i-1] = Rate;
+            data[i-1] = Rate;
             
             
         }
     }
-    return 0;
+    return data;
 }
