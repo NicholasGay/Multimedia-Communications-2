@@ -31,7 +31,7 @@ float * Measurement() {
             t = end.tv_usec - start.tv_usec;      //Calculating Dispersion Time
             Rate = packetsize/t;                    //Calculating Rate
             data[i-1] = Rate;
-            
+            WriteFile(Rate);
             
         }
     }

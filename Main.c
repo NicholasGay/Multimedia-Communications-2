@@ -1,11 +1,11 @@
 #include "MainHeaders.h"
 
 int main(){
-    float *d;
+
+    float *d;       //Delcerations
+    unsigned int sum = 0;
 
     d = Measurement();
-
-    for(int i =0; i<200; i++){
-        printf("%f\n",d[i]);
-    }
+    sum = MeasurementCount(d, sum);
+    printf("Sum is : %d\n",sum);
 }
