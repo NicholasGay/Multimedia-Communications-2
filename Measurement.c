@@ -17,6 +17,7 @@ float * Measurement() {
     sock = connectsock("129.187.223.200", "2000", "udp");       //Creating Socket
 
     if(Test(sock)==0){
+        printf("Measuring Now\n");
         for(i=1;i<=Interations;i++){
 
             send(sock,Msg1,packetsize,0);       //Sending first packet
@@ -31,9 +32,10 @@ float * Measurement() {
             t = end.tv_usec - start.tv_usec;      //Calculating Dispersion Time
             Rate = packetsize/t;                    //Calculating Rate
             data[i-1] = Rate;
-            WriteFile(Rate);
+            WriteFile(Rate);                        //Writing Result to text file
             
         }
     }
+    printf("Measuring Ended\n");
     return data;
 }
