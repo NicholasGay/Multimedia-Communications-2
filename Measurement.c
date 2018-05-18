@@ -1,7 +1,6 @@
 #define packetsize 800
 
-int Measurement() {
-
+float Measurement() {
     int i;
 
     char Msg1[packetsize] = "49 49 Undefeated";
@@ -18,7 +17,6 @@ int Measurement() {
     
     sock = connectsock("129.187.223.200", "2000", "udp");       //Creating Socket
 
-    Overwritefile();        //Erasing Past Results
     if(Test(sock)==0){
         for(i=1;i<=Interations;i++){
 
@@ -33,10 +31,10 @@ int Measurement() {
             
             t = end.tv_usec - start.tv_usec;      //Calculating Dispersion Time
             Rate = packetsize/t;                    //Calculating Rate
-
-            WriteFile(Rate);        //Writing to File
-
-            printf("Rate is :%f\n",Rate);        //Printing
+            Data[i-1] = Rate;
+            
+            
         }
     }
+    return 0;
 }

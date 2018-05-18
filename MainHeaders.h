@@ -2,8 +2,10 @@
 #include<stdlib.h>
 #include <sys/time.h>
 
+float Data[200];        //Declerations
+
 #include "Test.c"
 #include "File.c"
-#define packetsize 800
 #include "Measurement.c"
 
+//float* Data;
