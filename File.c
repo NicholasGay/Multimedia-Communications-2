@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+
 int i = 1;
 int WriteFile (double data){
     FILE * fpointer;
