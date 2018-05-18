@@ -14,6 +14,9 @@ int main(){
          sum = 0;
          NumOfMeasurements = MeasurementCount(d,sum,start,width);   //Summing Measurements
          i++;
-         printf("Sum is : %d\n",NumOfMeasurements);
+
+         printf("Sum is : %d ",NumOfMeasurements);
+         printf("for start = %1.2f ", start);
+         printf("and end = %1.2f\n",start+width);
     }
 }
