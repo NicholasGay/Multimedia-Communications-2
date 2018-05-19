@@ -1,14 +1,13 @@
 #define packetsize 800
 #define Interations 200
 
-float * Measurement() {
+void Measurement() {
     int i;
     int sock;       //Handler for socket
     struct timeval start, end;      //For Gettime
     double t;       //Dispersion Time
     double Rate;       //Bottleneck Rate
 
-    static float data[Interations];
     char Msg1[packetsize] = "49 49 Undefeated";
     char Msg2[packetsize] = "Playing Football The Arsenal Way";
     char Mail1[packetsize];
@@ -31,11 +30,9 @@ float * Measurement() {
             
             t = end.tv_usec - start.tv_usec;      //Calculating Dispersion Time
             Rate = packetsize/t;                    //Calculating Rate
-            data[i-1] = Rate;
             WriteFile(Rate);                        //Writing Result to text file
-            
+            printf("Measuring Number %d\n",i);
         }
     }
     printf("Measuring Ended\n");
-    return data;
 }

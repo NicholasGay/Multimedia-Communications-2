@@ -2,7 +2,8 @@
 #include<stdlib.h>
 #include <sys/time.h>
 
-float Data[200];        //Declerations
+#define packetsize 800
+#define Interations 200
 
 #include "Test.c"
 #include "File.c"
