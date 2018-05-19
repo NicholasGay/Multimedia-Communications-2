@@ -1,6 +1,3 @@
-#define packetsize 800
-#define Interations 200
-
 void Measurement() {
     int i;
     int sock;       //Handler for socket

@@ -13,7 +13,7 @@ int WriteFile (double data){
 int Overwritefile(){
     FILE * fpointer;
     fpointer = fopen("Results.txt","w");
-    fprintf(fpointer,"The Results are:\n");
+    fprintf(fpointer,"Packet Size %d\n",packetsize);
     fclose(fpointer);
     //i = 1;
     return 0;
