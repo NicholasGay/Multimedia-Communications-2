@@ -8,7 +8,7 @@ int main() {
     int count;
     int sock;
     
-    sock = connectsock("129.187.223.200", "2000", "udp");
+    sock = connectsock("129.187.223.200", "3000", "udp");
 
     if ( send (sock, outBuf, 800, 0) > 0 ) {
         printf("SENDED\n");
