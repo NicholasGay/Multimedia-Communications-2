@@ -1,0 +1,2 @@
+This is a two line text file.It is being partitioned and sent piece by piece. 
+You should read the socket continuously until an "END" tag is received. 
