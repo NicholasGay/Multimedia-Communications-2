@@ -14,9 +14,9 @@ void main(){
     if(strcmp(msg,end) == 0){
       break;
     }
-    WriteFile(msg);
-    
+    seq = (msg[2]<<8)+msg[3];
+    printf("%d\n",seq);
   }
-  Readfile();
-  
+
+  printf("%s\n",msg);
 }
