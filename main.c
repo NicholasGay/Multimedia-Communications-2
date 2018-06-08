@@ -1,6 +1,9 @@
 #include "Headers.h"
 
 void main(){
+  //Creating file object
+  FILE *fp;
+  fp = fopen("Music.mp3","w");
 
   sock = connectsock("129.187.223.200", "3000", "udp");
 
@@ -24,14 +27,14 @@ void main(){
 
   for(int i=0;i<index;i++){
     if(input[i].seq = i){
-      printf("%d\n",i);
+      fwrite(input[i].payload,1,1500,fp);
     }
     else{
       int j = i;
       while(input[j].seq != i){
         j++;
         if(input[j].seq == i){
-          printf("%d\n", input[j].seq);
+          fwrite(input[j].payload,1,1500,fp);
           i++;
           break;
         }
