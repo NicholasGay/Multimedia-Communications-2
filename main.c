@@ -2,7 +2,6 @@
 
 void main(){
 
-  Overwritefile(); 
   sock = connectsock("129.187.223.200", "3000", "udp");
 
   Test(sock);       //Testing program
@@ -19,8 +18,25 @@ void main(){
     input[index].seq = (msg[2]<<8)+msg[3];
     for(int i = 12; i<1500; i++){
         input[index].payload[i-12] = msg[i];
-    }   
+    }
+    index++;   
   }
 
+  for(int i=0;i<index;i++){
+    if(input[i].seq = i){
+      printf("%d\n",i);
+    }
+    else{
+      int j = i;
+      while(input[j].seq != i){
+        j++;
+        if(input[j].seq == i){
+          printf("%d\n", input[j].seq);
+          i++;
+          break;
+        }
+      }
+    }
+  }
  
 }
