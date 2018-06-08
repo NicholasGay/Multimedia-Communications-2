@@ -1,17 +1,16 @@
-int WriteFile (char data[1500]){
+int WriteFile (uint8_t data[]){
     FILE * fpointer;
-    fpointer = fopen("Textfile.txt","a");
-    fprintf(fpointer,"%s",data);
+    fpointer = fopen("Music.mp3","a");
+    fwrite(data,1,sizeof(data),fpointer);
     fclose(fpointer);
-    //i ++;
+    
     return 0;
 }
 
 int Overwritefile(){
     FILE * fpointer;
-    fpointer = fopen("Textfile.txt","w");
+    fpointer = fopen("Music.mp3","w");
     fclose(fpointer);
-    //i = 1;
     return 0;
 }
 

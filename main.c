@@ -8,37 +8,19 @@ void main(){
   Test(sock);       //Testing program
   //int packet = 1;
   send(sock,command,1500,0);
-
+  int index = 0;
   while(1){
     recv(sock, msg,1500,0);
     if(strcmp(msg,end) == 0){
       break;
     }
-    seq = (msg[2]<<8)+msg[3];
-    printf("%d\n",seq);
+    
+    //Storing packet
+    input[index].seq = (msg[2]<<8)+msg[3];
+    for(int i = 12; i<1500; i++){
+        input[index].payload[i-12] = msg[i];
+    }   
   }
 
-  printf("%s\n",msg);
-}
-#include "Headers.h"
-
-void main(){
-
-  Overwritefile(); 
-  sock = connectsock("129.187.223.200", "3000", "udp");
-
-  Test(sock);       //Testing program
-  //int packet = 1;
-  send(sock,command,1500,0);
-
-  while(1){
-    recv(sock, msg,1500,0);
-    if(strcmp(msg,end) == 0){
-      break;
-    }
-    seq = (msg[2]<<8)+msg[3];
-    printf("%d\n",seq);
-  }
-
-  printf("%s\n",msg);
+ 
 }
