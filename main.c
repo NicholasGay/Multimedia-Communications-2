@@ -1,5 +1,26 @@
 #include "Headers.h"
 
+struct data sort(struct data array[],int length){
+  struct data temp;
+  int swapped;
+  while(1){
+    swapped = 0;
+    for(int i = 0; i<length-1; i++){
+
+      if(array[i].seq > array[i+1].seq){
+          temp = array[i];
+          array[i] = array[i+1];
+          array[i+1] = temp;
+          swapped = 1;
+      }
+    }
+
+    if(swapped == 0){
+      break;
+    }
+  }
+}
+
 void main(){
   //Creating file object
   FILE *fp;
@@ -25,26 +46,9 @@ void main(){
     index++;   
   }
 
-  struct data temp;
-  int swapped;
-  while(1){
-    swapped = 0;
-    for(int i = 0; i<index-1; i++){
-
-      if(input[i].seq > input[i+1].seq){
-          temp = input[i];
-          input[i] = input[i+1];
-          input[i+1] = temp;
-          swapped = 1;
-      }
-    }
-
-    if(swapped == 0){
-      break;
-    }
-  }
-      
-  
+  //Sorting
+  sort(input,index);
+  //input code here     
 
  for(int i = 0; i<index; i++){
    if(input[i].seq != i){
