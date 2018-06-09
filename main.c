@@ -33,7 +33,7 @@ void main(){
   send(sock,command,1500,0);
   int index = 0;
   while(1){
-    input[index].payload_size = recv(sock, msg,1500,0) -12;
+    input[index].payload_size = recv(sock, msg,sizeof(msg),0) -12;
     if(strcmp(msg,end) == 0){
       printf("index : %d\n",index);
       break;
