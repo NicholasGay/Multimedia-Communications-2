@@ -13,6 +13,8 @@ uint8_t end[1500] = "END";
 struct data{
     uint16_t seq;
     uint8_t payload[1500];
+    unsigned int payload_size;
 };
 
 struct data input[2000];
+unsigned int bytes;
