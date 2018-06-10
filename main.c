@@ -25,9 +25,9 @@ void Request(struct data array[],int length,int sock){
 
   for(int i = 0; i<length; i++){
    if(array[i].seq != i){
-
+     length = length +1;
      char req[1500];
-     uint8_t reqmsg[512];
+     uint8_t reqmsg[1500];
      sprintf(req, "R %d",i);
 
      printf("Moving elements\n");
@@ -51,7 +51,7 @@ void Request(struct data array[],int length,int sock){
 void main(){
   //Creating file object
   FILE *fp;
-  fp = fopen("Video.yuv","wb");
+  fp = fopen("Video.264","w");
 
   sock = connectsock("129.187.223.200", "3000", "udp");
 
@@ -62,7 +62,8 @@ void main(){
   while(1){
     input[index].payload_size = recv(sock, msg,sizeof(msg),0) -12;
     if(strcmp(msg,end) == 0){
-      printf("index : %d\n",index);
+      last = input[index-1].seq;
+      printf("index : %d\n",last);
       break;
     }
     
@@ -80,23 +81,17 @@ void main(){
   //Request
   Request(input,index,sock);
 
-/*
-  char req[1500] = "R 146";
-  send(sock,req,1500,0);
-  recv(sock,msg,sizeof(msg),0);
-  input[146].seq = (msg[2]<<8)+msg[3];
-  printf("input seq is :%d",input[146].seq);
-*/
   //Writing
-  for(int i = 0; i<index; i++){
+  for(int i = 0; i<last; i++){
    if(input[i].seq != i){
      printf("Wrong for %d\n",i);
    }
    else{
-     fwrite(input[i].payload,1,input[i].payload_size,fp);
+     fwrite(input[i].payload,input[i].payload_size,1,fp);
    }
  }
   fclose(fp);
-  printf("%s\n",input[1].payload);
+  printf("Seq num is %d",input[456].seq);
+  printf(" for : 456\n");
  
 }
