@@ -51,7 +51,7 @@ void Request(struct data array[],int length,int sock){
 void main(){
   //Creating file object
   FILE *fp;
-  fp = fopen("Video.yuv","wb");
+  fp = fopen("Video.264","wb");
 
   sock = connectsock("129.187.223.200", "3000", "udp");
 
@@ -78,7 +78,7 @@ void main(){
   //input code here     
 
   //Request
-  Request(input,index,sock);
+  //Request(input,index,sock);
 
 /*
   char req[1500] = "R 146";
@@ -89,12 +89,7 @@ void main(){
 */
   //Writing
   for(int i = 0; i<index; i++){
-   if(input[i].seq != i){
-     printf("Wrong for %d\n",i);
-   }
-   else{
-     fwrite(input[i].payload,1,input[i].payload_size,fp);
-   }
+     fwrite(input[i].payload,1,input[i].payload_size,fp); 
  }
   fclose(fp);
   printf("%s\n",input[1].payload);
