@@ -1,6 +1,6 @@
 #include "Headers.h"
 
-struct data sort(struct data array[],int length){
+ void sort(struct data array[],int length){
   struct data temp;
   int swapped;
   while(1){
@@ -20,6 +20,8 @@ struct data sort(struct data array[],int length){
     }
   }
 }
+
+
 
 void main(){
   //Creating file object
@@ -52,12 +54,20 @@ void main(){
 
  for(int i = 0; i<index; i++){
    if(input[i].seq != i){
-     printf("Wrong\n");
+
+     printf("Moving elements\n");
+     for(int j = index-1; j>i;j--){
+       input[j] = input[j-1]; 
+     }
+     printf("REQUEST\n");
+     input[i].seq = i;
+     
    }
    else{
      fwrite(input[i].payload,1,input[i].payload_size,fp);
    }
  }
+
  fclose(fp);
  printf("%s\n",input[1].payload);
  
