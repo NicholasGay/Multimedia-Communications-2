@@ -85,17 +85,36 @@ void sort(struct Node **head_ref){
 
     struct Node *Prev = *head_ref;
     struct Node *Curr = Prev -> next;
+
+    if(Prev->data.value > Curr->data.value){
+            printf("Start Swaping %d and %d\n",Curr->data.value, Prev->data.value);
+            struct Node *temp = Curr->next;
+            (*head_ref) = Curr;
+            Curr->next = Prev;
+            Prev->next = temp;
+        }
     while(Curr->next != NULL){
 
         struct Node *Next = Curr -> next;
         if(Curr->data.value > Next->data.value){
-            printf("Swap\n");
-            struct Node *temp = Prev->next;
+            printf("Swaping %d and %d\n",Curr->data.value, Next->data.value);
             Prev->next = Next;
             Curr->next = Next->next;
             Next->next = Curr; 
+
+            Prev = *head_ref;
+            Curr = Prev -> next;
+            if(Prev->data.value > Curr->data.value){
+                printf("Start Swaping %d and %d\n",Curr->data.value, Prev->data.value);
+                struct Node *temp = Curr->next;
+                (*head_ref) = Curr;
+                Curr->next = Prev;
+                Prev->next = temp;
+        }
+
         }
         Curr =Curr->next;
+        Prev = Prev->next;
         }
         
     }
@@ -105,9 +124,9 @@ int main()
 {
 /* Start with the empty list */
 struct Node* head = NULL;
-uint8_t array[5] = {1,3,2,4,5};
+uint8_t array[9] = {5,4,2,3,1,6,9,8,7};
 
-for(int i = 0; i<5;i++){
+for(int i = 0; i<9;i++){
     append(&head,array[i]);
 }
 
