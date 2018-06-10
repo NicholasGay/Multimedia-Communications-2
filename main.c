@@ -21,12 +21,37 @@
   }
 }
 
+void Request(struct data array[],int length,int sock){
+
+  for(int i = 0; i<length; i++){
+   if(array[i].seq != i){
+
+     char req[1500];
+     uint8_t reqmsg[512];
+     sprintf(req, "R %d",i);
+
+     printf("Moving elements\n");
+     for(int j = length-1; j>i;j--){
+       array[j] = array[j-1]; 
+     }
+     printf("REQUESTING ");
+     printf("%s\n", req);
+
+     send(sock,req,1500,0);
+     array[i].payload_size = recv(sock,reqmsg,sizeof(reqmsg),0)-12;
+     array[i].seq = (reqmsg[2]<<8)+reqmsg[3];
+     printf("Received packet number: %d for index %d\n",array[i].seq,i); 
+     memcpy(array[i].payload,&reqmsg[12],input[i].payload_size);  
+   }
+ }
+}
+
 
 
 void main(){
   //Creating file object
   FILE *fp;
-  fp = fopen("Music.mp3","wb");
+  fp = fopen("Video.yuv","wb");
 
   sock = connectsock("129.187.223.200", "3000", "udp");
 
@@ -52,23 +77,26 @@ void main(){
   sort(input,index);
   //input code here     
 
- for(int i = 0; i<index; i++){
-   if(input[i].seq != i){
+  //Request
+  Request(input,index,sock);
 
-     printf("Moving elements\n");
-     for(int j = index-1; j>i;j--){
-       input[j] = input[j-1]; 
-     }
-     printf("REQUEST\n");
-     input[i].seq = i;
-     
+/*
+  char req[1500] = "R 146";
+  send(sock,req,1500,0);
+  recv(sock,msg,sizeof(msg),0);
+  input[146].seq = (msg[2]<<8)+msg[3];
+  printf("input seq is :%d",input[146].seq);
+*/
+  //Writing
+  for(int i = 0; i<index; i++){
+   if(input[i].seq != i){
+     printf("Wrong for %d\n",i);
    }
    else{
      fwrite(input[i].payload,1,input[i].payload_size,fp);
    }
  }
-
- fclose(fp);
- printf("%s\n",input[1].payload);
+  fclose(fp);
+  printf("%s\n",input[1].payload);
  
 }
