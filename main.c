@@ -51,7 +51,7 @@ void Request(struct data array[],int length,int sock){
 void main(){
   //Creating file object
   FILE *fp;
-  fp = fopen("Video.264","wb");
+  fp = fopen("decoder/Video.264","wb");
 
   sock = connectsock("129.187.223.200", "3000", "udp");
 
