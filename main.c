@@ -80,18 +80,10 @@ void main(){
   //Request
   //Request(input,index,sock);
 
-/*
-  char req[1500] = "R 146";
-  send(sock,req,1500,0);
-  recv(sock,msg,sizeof(msg),0);
-  input[146].seq = (msg[2]<<8)+msg[3];
-  printf("input seq is :%d",input[146].seq);
-*/
   //Writing
   for(int i = 0; i<index; i++){
      fwrite(input[i].payload,1,input[i].payload_size,fp); 
  }
   fclose(fp);
-  printf("%s\n",input[1].payload);
  
 }
