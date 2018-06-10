@@ -1,6 +1,6 @@
 #include "Headers.h"
 
-struct data sort(struct data array[],int length){
+void sort(struct data array[],int length){
   struct data temp;
   int swapped;
   while(1){
